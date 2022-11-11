@@ -3,7 +3,7 @@ on:
  # оброка лише події типу push
  push:
   # обробка подій лише для main-гілки
-  branches: LW11
+  branches: main
 jobs:
  OracleConnectTesting:
   # використання Docker-image із вказаною версією ОС
