@@ -4,7 +4,7 @@ import oracle.jdbc.driver.*;
 class TestCases {
     public static void main(final String[] args) {
 		int testCaseResult = 0; // 0 = Passed -1 = Failed
-        try{  
+        try {
             // load Oracle JDBC-driver
             DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
             // open connect to DB
@@ -13,42 +13,38 @@ class TestCases {
 				   			      args[0], // get login as 1th command line parameter
 							      args[1]); // get password as 2nd command line parameter 
             // create template string with PL/SQL-function "add_user"
-			CallableStatement cstmt1 = con.prepareCall("{? = call add_user(?,?)}");
-			cstmt1.registerOutParameter(1,Types.NUMERIC);		
-			// TC1
-			System.out.print("TC1: ");
+	    CallableStatement cstmt1 = con.prepareCall("{? = call add_user(?,?)}");
+	    cstmt1.registerOutParameter(1,Types.NUMERIC);		
+	    System.out.print("TC1: ");
             Statement cstmt2 = con.createStatement();
 			cstmt2.executeUpdate("DELETE FROM Users WHERE uname = upper('user1')");
             // init template variables
-			cstmt1.setString(2, "user1");
-			cstmt1.setString(3, "a12A345678#");
-			// execute query
-			cstmt1.executeUpdate();
-			// analize TastCase-result
+	    cstmt1.setString(2, "user1");
+	    cstmt1.setString(3, "a12A345678#");
+	    // execute query
+	    cstmt1.executeUpdate();
+	    // analize TastCase-result
             if (cstmt1.getInt(1) == 1) System.out.println("Passed");
-			else { 
-			    System.out.println("Failed");
-				testCaseResult = -1;
-			}
-			// TC2
-			System.out.print("TC2: ");
+	    else { 
+	        System.out.println("Failed");
+	   	testCaseResult = -1;
+	    }
+    	    System.out.print("TC2: ");
             // init template variables
-			cstmt1.setString(2, "user1");
-			cstmt1.setString(3, "a12A345678#");
-			// execute query
-			cstmt1.executeUpdate();
-			// analize TastCase-result
+	    cstmt1.setString(2, "user1");
+	    cstmt1.setString(3, "a12A345678#");
+	    cstmt1.executeUpdate();
             if (cstmt1.getInt(1) == -1) System.out.println("Passed");
-			else { 
-			    System.out.println("Failed");
-				testCaseResult = -1;
-			}
-			// close connect 
+	    else { 
+	        System.out.println("Failed");
+		testCaseResult = -1;
+	    }
+   	    // close connect 
             con.close();  
         }
-		catch(Exception e){ 
+	catch(Exception e) {
 		    System.out.println(e);
-		}  
-	    System.exit(testCaseResult);
+	}  
+	System.exit(testCaseResult);
     }    
 }  
