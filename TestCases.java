@@ -10,8 +10,8 @@ class TestCases {
             // open connect to DB
             Connection con=DriverManager.getConnection(  
                                   "jdbc:oracle:thin:@91.219.60.189:1521/XEPDB1",
-				   			      args[0], // get login as 1th command line parameter
-							      args[1]); // get password as 2nd command line parameter 
+				  args[0], // get login as 1th command line parameter
+				  args[1]); // get password as 2nd command line parameter 
             // create template string with PL/SQL-function "add_user"
 	    CallableStatement cstmt1 = con.prepareCall("{? = call add_user(?,?)}");
 	    cstmt1.registerOutParameter(1,Types.NUMERIC);		
