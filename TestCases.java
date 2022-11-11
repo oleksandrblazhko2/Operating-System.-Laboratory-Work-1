@@ -23,7 +23,7 @@ class TestCases {
 	    cstmt1.setString(3, "a12A345678#");
 	    // execute query
 	    cstmt1.executeUpdate();
-	    // analize TastCase-result
+	    // analize TestCase-result
             if (cstmt1.getInt(1) == 1) System.out.println("Passed");
 	    else { 
 	        System.out.println("Failed");
