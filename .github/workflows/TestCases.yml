@@ -3,7 +3,7 @@ on:
  # оброка лише події типу push
  push:
   # обробка подій лише для LW11-гілки
-  branches: main
+  branches: LW11
 jobs:
  TestCases:
   # використання Docker-image із вказаною версією ОС
