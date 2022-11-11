@@ -1,0 +1,27 @@
+name: Test Cases
+on:
+ # оброка лише події типу push
+ push:
+  # обробка подій лише для LW11-гілки
+  branches: LW11
+jobs:
+ TestCases:
+  # використання Docker-image із вказаною версією ОС
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout
+    # клонування репозиторія для подальшої роботи з файлами на сервері 
+    # в каталозі $GITHUB_WORKSPACE
+    uses: "actions/checkout@v3"
+  - name: Compile
+    # виконання декількох послідовних команд shell-інтерпретатором
+    run: |
+      cd $GITHUB_WORKSPACE/
+      export CLASSPATH="./ojdbc8.jar:./"
+      javac TestCases.java
+  - name: Execute
+    run: |
+      cd $GITHUB_WORKSPACE/
+      export CLASSPATH="./ojdbc8.jar:./"
+      java TestCases ${{ secrets.LOGIN }} ${{ secrets.PASSWORD }}
+     
