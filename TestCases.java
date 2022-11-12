@@ -15,7 +15,7 @@ class TestCases {
             // create template string with PL/SQL-function "add_user"
 	    CallableStatement cstmt1 = con.prepareCall("{? = call add_user(?,?)}");
 	    cstmt1.registerOutParameter(1,Types.NUMERIC);		
-	    System.out.print("TC1: user 'user1' is not exists; add_user('user1','a12A345678#') = 1");
+	    System.out.print("TC1 ( user 'user1' is not exists; add_user('user1','a12A345678#') = 1 ) := ");
             Statement cstmt2 = con.createStatement();
 			cstmt2.executeUpdate("DELETE FROM Users WHERE uname = upper('user1')");
             // init template variables
@@ -29,7 +29,7 @@ class TestCases {
 	        System.out.println("Failed");
 	   	testCaseResult = -1;
 	    }
-    	    System.out.print("TC2: user 'user1' is exists; add_user('user1','a12A345678#') = -1");
+    	    System.out.print("TC2 ( user 'user1' is exists; add_user('user1','a12A345678#') = -1 ) := ");
             // init template variables
 	    cstmt1.setString(2, "user1");
 	    cstmt1.setString(3, "a12A345678#");
