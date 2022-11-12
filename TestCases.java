@@ -34,7 +34,7 @@ class TestCases {
 	    cstmt1.setString(2, "user1");
 	    cstmt1.setString(3, "a12A345678#");
 	    cstmt1.executeUpdate();
-            if (cstmt1.getInt(1) == -2) System.out.println("Passed");
+            if (cstmt1.getInt(1) == -1) System.out.println("Passed");
 	    else { 
 	        System.out.println("Failed");
 		testCaseResult = -1;
